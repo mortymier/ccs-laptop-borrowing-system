@@ -23,4 +23,10 @@ public class StudentService
     {
         return studentRepository.findByEmailAndPassword(email, password);
     }
+
+    // Get student by id
+    public Optional<StudentEntity> getStudentById(Long id)
+    {
+        return studentRepository.findById(id);
+    }
 }
