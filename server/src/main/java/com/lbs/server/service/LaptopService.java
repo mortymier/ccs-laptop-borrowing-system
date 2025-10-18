@@ -13,8 +13,6 @@ public class LaptopService
     @Autowired
     private LaptopRepository laptopRepository;
 
-    public LaptopService() { super(); }
-
     // Add new laptop
     public LaptopEntity addLaptop(LaptopEntity laptop)
     {

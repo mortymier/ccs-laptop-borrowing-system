@@ -12,8 +12,6 @@ public class StudentService
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentService() { super(); }
-
     // Register student
     public StudentEntity registerStudent(StudentEntity student)
     {

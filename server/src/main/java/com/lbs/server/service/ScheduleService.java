@@ -14,8 +14,6 @@ public class ScheduleService
     @Autowired
     private ScheduleRepository scheduleRepository;
 
-    public ScheduleService() { super(); }
-
     // Get all schedules belonging to a specific student
     public List<ScheduleEntity> getAllSchedulesByStudent(StudentEntity student)
     {

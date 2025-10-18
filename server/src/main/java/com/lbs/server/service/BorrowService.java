@@ -13,8 +13,6 @@ public class BorrowService
     @Autowired
     private BorrowRepository borrowRepository;
 
-    public BorrowService() { super(); }
-
     // Get all borrow records based on a specific borrow status
     public List<BorrowEntity> getAllBorrowsByStatus(BorrowEntity.BorrowStatus borrowstatus)
     {

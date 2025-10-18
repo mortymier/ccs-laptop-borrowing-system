@@ -12,8 +12,6 @@ public class StaffService
     @Autowired
     private StaffRepository staffRepository;
 
-    public StaffService() { super(); }
-
     // Register staff
     public StaffEntity registerStaff(StaffEntity staff)
     {
