@@ -14,13 +14,13 @@ public class StaffService
 
     public StaffService() { super(); }
 
-    // Register student
+    // Register staff
     public StaffEntity registerStaff(StaffEntity staff)
     {
         return staffRepository.save(staff);
     }
 
-    // Login student
+    // Login staff
     public Optional<StaffEntity> loginStaff(String email, String password)
     {
         return staffRepository.findByEmailAndPassword(email, password);
