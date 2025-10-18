@@ -5,7 +5,6 @@ import com.lbs.server.entity.StudentEntity;
 import com.lbs.server.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -13,6 +12,12 @@ public class ScheduleService
 {
     @Autowired
     private ScheduleRepository scheduleRepository;
+
+    // Add new schedule
+    public ScheduleEntity addSchedule(ScheduleEntity schedule)
+    {
+        return scheduleRepository.save(schedule);
+    }
 
     // Get all schedules belonging to a specific student
     public List<ScheduleEntity> getAllSchedulesByStudent(StudentEntity student)
