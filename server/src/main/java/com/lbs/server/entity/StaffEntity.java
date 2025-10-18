@@ -14,7 +14,7 @@ public class StaffEntity
     private String firstname;
     private String lastname;
 
-    @Column(unique = true)
+    @Column(unique = true) // Prevent duplicate emails
     private String email;
     private String password;
 
