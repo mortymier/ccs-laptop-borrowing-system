@@ -46,9 +46,13 @@ public class BorrowEntity
         this.schedule = schedule;
     }
 
-    // Automatically set borrow date once a new record is created
+    // Automatically set borrow date and status once a new record is created
     @PrePersist
-    public void onCreate() { borrowdate = LocalDate.now(); }
+    public void onCreate()
+    {
+        borrowdate = LocalDate.now();
+        borrowstatus = BorrowStatus.REVIEWING;
+    }
 
     public String getReason() { return reason; }
     public void setReason(String reason) { this.reason = reason; }
