@@ -1,0 +1,111 @@
+.header
+{
+    display: flex;
+    width: 100%;
+    padding: 0.5vw 0;
+    
+}
+
+.header img
+{
+    width: 4.5vw;
+    height: 4vw;
+    margin-left: 1vw;
+}
+
+.site-name
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.site-name h1
+{
+    margin: 0;
+    font-size: 1.4vw;
+    color: maroon;
+}
+
+.site-name h2
+{
+    margin: 0;
+    font-size: 1.25vw;
+    color: gold;
+}
+
+.header nav
+{
+    display: flex;
+    align-self: center;
+    margin-left: 12vw;
+    font-size: 1.1vw;
+    font-weight: 600;
+}
+
+.header ul
+{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 2vw;
+}
+
+.header nav a
+{
+    padding: 0.5vw 1vw;
+    border-radius: 1vw;
+    text-decoration: none;
+    color: black
+}
+
+.header nav a:hover
+{
+    text-decoration: underline;
+    text-decoration-color: maroon;
+    text-decoration-thickness: 0.2vw;
+    text-underline-offset: 0.5vw;
+    color: maroon;
+}
+
+.user-auth
+{
+    display: flex;
+    align-self: center;
+    margin-left: 12vw;
+    gap: 1vw;
+    font-size: 1.1vw;
+}
+
+.user-auth a
+{
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.user-auth a:first-child
+{
+    background-color: gold;
+    color: maroon;
+}
+
+.user-auth a:first-child:hover
+{
+    background-color: #ffbf00;
+}
+
+.user-auth a:last-child
+{
+    background-color: maroon;
+    color: gold;
+}
+
+.user-auth a:last-child:hover
+{
+    background-color: #BF092F;
+}
