@@ -16,7 +16,7 @@ export default function Header()
             <nav>
                 <ul>
                     <li> <a id={location.pathname === '/' ? 'current' : ''} href="/"> Home </a> </li>
-                    <li> <a id={location.pathname === '/news' ? 'current' : ''} href="/news"> News </a> </li>
+                    <li> <a id={location.pathname === '/news' ? 'current' : ''} href="/"> News </a> </li>
                     <li> <a id={location.pathname === '/about' ? 'current' : ''} href="/about"> About </a> </li>
                     <li> <a id={location.pathname === '/contact' ? 'current' : ''} href="/contact"> Contact </a> </li>
                 </ul>
