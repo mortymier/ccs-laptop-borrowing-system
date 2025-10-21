@@ -111,7 +111,7 @@
     background-color: #BF092F;
 }
 
-#studentlogout
+#studentlogout, #stafflogout
 {
     font-size: 1.1vw;
 }
