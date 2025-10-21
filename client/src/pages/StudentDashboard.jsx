@@ -16,6 +16,8 @@ export default function StudentDashboard()
         (borrow, index) => 
             <tr key={index}> 
                 <td> {borrow.borrowdate} </td>
+                <td> {borrow.schedule.course} - {borrow.schedule.section} </td>
+                <td> {borrow.schedule.start} - {borrow.schedule.end} </td>
                 <td> {borrow.laptop.brand} - {borrow.laptop.model} </td>
                 <td> {borrow.laptop.ram} </td>
                 <td> {borrow.laptop.cpu} </td>
@@ -30,6 +32,8 @@ export default function StudentDashboard()
         (borrow, index) =>
             <tr key={index}>
                 <td> {borrow.borrowdate} </td>
+                <td> {borrow.schedule.course} - {borrow.schedule.section} </td>
+                <td> {borrow.schedule.start} - {borrow.schedule.end} </td>
                 <td> {borrow.laptop.brand} - {borrow.laptop.model} </td>
                 <td> {borrow.laptop.ram} </td>
                 <td> {borrow.laptop.cpu} </td>
@@ -132,6 +136,8 @@ export default function StudentDashboard()
                     <thead>
                         <tr>
                             <th> Borrow Date </th>
+                            <th> Course </th>
+                            <th> Time </th>
                             <th> Laptop </th>
                             <th> RAM </th>
                             <th> CPU </th>
@@ -150,6 +156,8 @@ export default function StudentDashboard()
                     <thead>
                         <tr>
                             <th> Borrow Date </th>
+                            <th> Course </th>
+                            <th> Time </th>
                             <th> Laptop </th>
                             <th> RAM </th>
                             <th> CPU </th>
