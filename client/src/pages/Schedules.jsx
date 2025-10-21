@@ -156,6 +156,21 @@ export default function Schedules()
                 <main className="schedules">
                     <h2> These are the list of schedules for {studentName}: </h2>
                     
+                    <table className="schedules-table">
+                        <thead>
+                            <tr>
+                                <th> School Year </th>
+                                <th> Semester </th>
+                                <th> Course </th>
+                                <th> Section </th>
+                                <th> Time </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {showSchedules}
+                        </tbody>
+                    </table>
+
                     <div className="schedules-actions">
                         <button 
                             className="add-schedule-btn" 
@@ -181,7 +196,7 @@ export default function Schedules()
                                     type="text" 
                                     value={formInput.schoolyear} 
                                     onChange={handleChange} 
-                                    placeholder="e.g., 2024-2025"
+                                    placeholder="e.g., 2024 - 2025"
                                     required 
                                 />
                             </div>
@@ -210,7 +225,7 @@ export default function Schedules()
                                     type="text" 
                                     value={formInput.course} 
                                     onChange={handleChange} 
-                                    placeholder="e.g., BSIT"
+                                    placeholder="e.g., CSIT340"
                                     required 
                                 />
                             </div>
@@ -223,7 +238,7 @@ export default function Schedules()
                                     type="text" 
                                     value={formInput.section} 
                                     onChange={handleChange} 
-                                    placeholder="e.g., A"
+                                    placeholder="e.g., G1"
                                     required 
                                 />
                             </div>
@@ -282,21 +297,6 @@ export default function Schedules()
                             </div>
                         </form>
                     )}
-
-                    <table className="schedules-table">
-                        <thead>
-                            <tr>
-                                <th> School Year </th>
-                                <th> Semester </th>
-                                <th> Course </th>
-                                <th> Section </th>
-                                <th> Time </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {showSchedules}
-                        </tbody>
-                    </table>
                 </main>
             <Footer/>
         </>
