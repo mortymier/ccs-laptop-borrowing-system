@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.naming.NameNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import java.util.NoSuchElementException;
 
 @Service
@@ -34,6 +35,16 @@ public class BorrowService
         borrow.setStudent(studentRepository.findById(studentid).get());
         borrow.setLaptop(laptopRepository.findById(laptopid).get());
         borrow.setSchedule(scheduleRepository.findById(scheduleid).get());
+        return borrowRepository.save(borrow);
+    }
+
+    // Add new borrow record using student email, schedule course, laptop brand, and model
+    public BorrowEntity addBorrowRecord2(String email, String course, String brand, String model, BorrowEntity borrow)
+    {
+        Optional<StudentEntity> student = studentRepository.findByEmail(email);
+        borrow.setStudent(student.get());
+        borrow.setSchedule(scheduleRepository.findByCourseAndStudent(course, student.get()).get());
+        borrow.setLaptop(laptopRepository.findByBrandAndModel(brand, model).get());
         return borrowRepository.save(borrow);
     }
 
