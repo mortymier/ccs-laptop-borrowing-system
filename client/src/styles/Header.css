@@ -80,9 +80,10 @@
     font-size: 1.1vw;
 }
 
-.user-auth a
+.user-auth a, .user-auth button
 {
     padding: 0.5vw 1vw;
+    border: none;
     border-radius: 0.5vw;
     text-decoration: none;
     font-weight: 600;
@@ -99,13 +100,14 @@
     background-color: #ffbf00;
 }
 
-.user-auth a:last-child
+.user-auth a:last-child, .user-auth button
 {
     background-color: maroon;
     color: gold;
 }
 
-.user-auth a:last-child:hover
+.user-auth a:last-child:hover, .user-auth button:hover
 {
     background-color: #BF092F;
 }
+
