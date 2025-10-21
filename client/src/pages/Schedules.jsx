@@ -18,6 +18,8 @@ export default function Schedules()
         start: '',
         end: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState('');
 
     const showSchedules = schedules.map
     (
@@ -38,22 +40,54 @@ export default function Schedules()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setIsSubmitting(true);
         
+        // Validate form data
+        if (!formInput.schoolyear || !formInput.semester || !formInput.course || 
+            !formInput.section || !formInput.start || !formInput.end) {
+            setError('Please fill in all fields');
+            setIsSubmitting(false);
+            return;
+        }
+
+        // Validate time format
+        if (formInput.start >= formInput.end) {
+            setError('End time must be after start time');
+            setIsSubmitting(false);
+            return;
+        }
+
         const loggedInStudent = localStorage.getItem('loggedInStudent');
+        if (!loggedInStudent) {
+            setError('Please log in to add schedules');
+            setIsSubmitting(false);
+            return;
+        }
+
         const studentData = JSON.parse(loggedInStudent);
         const studentEmail = studentData.email;
 
         try {
-            const response = await fetch('http://localhost:8080/api/schedules', {
+            console.log('Submitting schedule:', formInput);
+            console.log('Student email:', studentEmail);
+            
+            const response = await fetch(`http://localhost:8080/api/schedules/student?email=${encodeURIComponent(studentEmail)}`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    ...formInput,
-                    studentEmail: studentEmail
-                })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formInput)
             });
 
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+
             if (response.ok) {
+                const newSchedule = await response.json();
+                console.log('Schedule created successfully:', newSchedule);
+                
                 alert('Schedule added successfully!');
                 setFormInput({
                     schoolyear: '',
@@ -66,11 +100,15 @@ export default function Schedules()
                 setShowForm(false);
                 fetchStudentSchedules(); // Refresh the schedules list
             } else {
-                throw new Error('Failed to add schedule');
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Failed to add schedule: ${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error(error);
-            alert(error.message);
+            console.error('Error details:', error);
+            setError(error.message);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -130,6 +168,11 @@ export default function Schedules()
                     {showForm && (
                         <form className="schedule-form" onSubmit={handleSubmit}>
                             <h3> Add New Schedule </h3>
+                            {error && (
+                                <div className="error-message">
+                                    {error}
+                                </div>
+                            )}
                             <div className="formfield">
                                 <label htmlFor="schoolyear"> School Year </label>
                                 <input 
@@ -210,8 +253,32 @@ export default function Schedules()
                             </div>
 
                             <div className="buttons">
-                                <button type="submit" className="submit-btn"> Add Schedule </button>
-                                <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}> Cancel </button>
+                                <button 
+                                    type="submit" 
+                                    className="submit-btn" 
+                                    disabled={isSubmitting}
+                                > 
+                                    {isSubmitting ? 'Adding...' : 'Add Schedule'} 
+                                </button>
+                                <button 
+                                    type="button" 
+                                    className="cancel-btn" 
+                                    onClick={() => {
+                                        setShowForm(false);
+                                        setError('');
+                                        setFormInput({
+                                            schoolyear: '',
+                                            semester: '',
+                                            course: '',
+                                            section: '',
+                                            start: '',
+                                            end: ''
+                                        });
+                                    }}
+                                    disabled={isSubmitting}
+                                > 
+                                    Cancel 
+                                </button>
                             </div>
                         </form>
                     )}
