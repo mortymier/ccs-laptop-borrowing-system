@@ -7,6 +7,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import RegisterStudent from './pages/RegisterStudent.jsx';
 import RegisterStaff from './pages/RegisterStaff.jsx';
+import StudentDashboard from './pages/StudentDashboard.jsx';
 
 export default function App()
 {
@@ -21,6 +22,7 @@ export default function App()
           <Route path="register" element={<Register/>}/>
           <Route path="registerstudent" element={<RegisterStudent/>}/>
           <Route path="registerstaff" element={<RegisterStaff/>}/>
+          <Route path="studentdashboard" element={<StudentDashboard/>}/>
         </Routes>
       </BrowserRouter>
     </>
