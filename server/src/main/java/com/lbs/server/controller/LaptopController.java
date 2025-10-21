@@ -3,6 +3,7 @@ package com.lbs.server.controller;
 import com.lbs.server.entity.LaptopEntity;
 import com.lbs.server.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,5 +33,20 @@ public class LaptopController
     {
         List<LaptopEntity> laptops = laptopService.getAllLaptops();
         return ResponseEntity.ok(laptops);
+    }
+
+    // PUT : Update laptop status
+    @PutMapping("/{newStatus}")
+    public ResponseEntity<LaptopEntity> updateLaptopStatus(@PathVariable LaptopEntity.LaptopStatus newStatus, @RequestBody LaptopEntity updatedLaptop)
+    {
+        try
+        {
+            LaptopEntity temp = laptopService.updateLaptopStatus(newStatus, updatedLaptop);
+            return ResponseEntity.ok(temp);
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
