@@ -56,8 +56,37 @@ export default function StaffDashboard()
 
             if(response.ok && newStatus === 'APPROVED')
             {
-                alert('APPROVED: ' + borrow.laptop.brand + ' - ' + borrow.laptop.model + ' - ' + borrow.student.firstname + ' ' + borrow.student.lastname);
-                window.location.reload();
+                const updatedLaptop = borrow.laptop;
+                const newLaptopStatus = 'BORROWED';
+                console.log(updatedLaptop);
+
+                try
+                {
+                    const response2 = await fetch
+                    (
+                        `http://localhost:8080/api/laptops/${newLaptopStatus}`,
+                        {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(updatedLaptop)
+                        }
+                    );
+
+                    if(response2.ok)
+                    {
+                        alert('APPROVED: ' + borrow.laptop.brand + ' - ' + borrow.laptop.model + ' - ' + borrow.student.firstname + ' ' + borrow.student.lastname);
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        throw new Error('Failed to approve request');
+                    }
+                }
+                catch(error)
+                {
+                    console.error(error);
+                    alert(error.message);
+                }                
             }
             else if(response.ok && newStatus === 'REJECTED')
             {
