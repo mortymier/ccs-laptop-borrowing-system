@@ -61,7 +61,7 @@ export default function StaffDashboard()
             }
             else if(response.ok && newStatus === 'REJECTED')
             {
-                alert('REJECTED: ' + borrow.laptop.brand + ' - ' + borrow.laptop.model + ' - ' + borrow.student.firstName + ' ' + borrow.student.lastName);
+                alert('REJECTED: ' + borrow.laptop.brand + ' - ' + borrow.laptop.model + ' - ' + borrow.student.firstname + ' ' + borrow.student.lastname);
                 window.location.reload();
             }
             else
