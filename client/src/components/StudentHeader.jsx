@@ -24,8 +24,9 @@ export default function StudentHeader()
             </a>
             <nav>
 				<ul>
-					<li> <a id={location.pathname === '/studentdashboard' ? 'current' : ''} href="/studentdashboard">Dashboard</a> </li>
+					<li> <a id={location.pathname === '/studentdashboard' ? 'current' : ''} href="/studentdashboard"> Dashboard </a> </li>
                     <li> <a id={location.pathname === '/browselaptops' ? 'current' : ''} href="/browselaptops"> Browse </a> </li>
+                    <li> <a id={location.pathname === '/schedules' ? 'current' : ''} href="/schedules"> Schedules </a> </li>
 				</ul>
 			</nav>
             <div className="user-auth">
