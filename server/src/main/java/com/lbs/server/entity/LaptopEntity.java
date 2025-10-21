@@ -38,6 +38,13 @@ public class LaptopEntity
         this.laptopstatus = laptopstatus;
     }
 
+    // Automatically set laptop status to available once a new laptop is added
+    @PrePersist
+    public void onCreate()
+    {
+        laptopstatus = LaptopStatus.AVAILABLE;
+    }
+
     public String getBrand() { return brand; }
     public void setBrand(String brand) { this.brand = brand; }
 
