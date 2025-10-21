@@ -34,6 +34,15 @@ public class BorrowController
         return ResponseEntity.created(location).body(newBorrow);
     }
 
+    // POST : Add new borrow record using student email, schedule course, laptop brand, and model
+    @PostMapping("/add")
+    public ResponseEntity<BorrowEntity> addBorrowRecord2(@RequestParam String email, @RequestParam String course, @RequestParam String brand, @RequestParam String model, @RequestBody BorrowEntity borrow)
+    {
+        BorrowEntity newBorrow = borrowService.addBorrowRecord2(email, course, brand, model, borrow);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().toUri();
+        return ResponseEntity.created(location).body(newBorrow);
+    }
+
     // GET : All borrow records based on a specific borrow status (staff view)
     @GetMapping("/status")
     public ResponseEntity<List<BorrowEntity>> getAllBorrowsByStatus(@RequestParam BorrowEntity.BorrowStatus borrowstatus)
