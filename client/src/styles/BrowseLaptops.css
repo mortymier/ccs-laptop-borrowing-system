@@ -122,3 +122,19 @@
     color: #78081C;
 }
 
+.laptop-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.laptop-card.unavailable {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.laptop-card.unavailable:hover {
+  transform: none;
+}

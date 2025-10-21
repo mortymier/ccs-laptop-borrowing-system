@@ -18,6 +18,10 @@ public class LaptopEntity
     private String storage;
     private double price;
 
+    @Lob
+    @Column(name = "photo_file", columnDefinition = "LONGBLOB")
+    private byte[] photoFile;
+
     @Enumerated(EnumType.STRING)
     private LaptopStatus laptopstatus;
 
@@ -64,5 +68,8 @@ public class LaptopEntity
     public void setPrice(double price) { this.price = price; }
 
     public LaptopStatus getLaptopstatus() { return laptopstatus; }
-    public void setLaptopstatus(LaptopStatus laptopstatus) { this.laptopstatus =  laptopstatus; }
+    public void setLaptopstatus(LaptopStatus laptopstatus) { this.laptopstatus = laptopstatus; }
+
+    public byte[] getPhotoFile() { return photoFile; }
+    public void setPhotoFile(byte[] photoFile) { this.photoFile = photoFile; }
 }
