@@ -39,7 +39,7 @@ export default function AddLaptop()
                     body: JSON.stringify(formInput)
                 }
             );
-git
+
             if(response.ok)
             {
                 const laptopData = await response.json();
