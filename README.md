@@ -11,14 +11,20 @@
     > IntelliJ IDEA (recommended for Spring Boot development)
     
 ---
-**2.	Clone Repository - Download as ZIP**
-
-    > Extract the folder inside the ZIP file (ccs-laptop-borrowing-system-main)
+**2.    Clone Repository**
     
-    > Changes you make in this folder will be tracked by git
+    > Create folder where you will store your cloned repository
 
-   <img width="976" height="540" alt="Screenshot 2025-10-21 211308" src="https://github.com/user-attachments/assets/2c9fb716-3e47-4c9d-9a85-039a9c236679" />
-   
+    > Go to the GitHub repository's main page, click the green code button, and copy HTTPS url
+
+  <img width="1366" height="768" alt="Screenshot (1114)" src="https://github.com/user-attachments/assets/80de3795-6daf-4524-9968-8e01377d37e0" />
+
+    > Open terminal and make sure the current directory is the project folder
+
+    > Clone repository in current directory: > git clone https://github.com/mortymier/ccs-laptop-borrowing-system.git
+
+  <img width="1066" height="232" alt="Screenshot 2025-10-21 225627" src="https://github.com/user-attachments/assets/e84863d3-575e-4fcf-b793-3355b0c18456" />
+  
 ---
 **3. Install NPM packages for the client React app**
 
