@@ -43,11 +43,11 @@ public class BorrowController
     }
 
     // GET : All borrow records from a specific student with a specific borrow status
-    @GetMapping("/status-student/{studentid}")
-    public ResponseEntity<List<BorrowEntity>> getAllBorrowsByStudentAndStatus(@PathVariable Long studentid, @RequestParam BorrowEntity.BorrowStatus borrowstatus)
+    @GetMapping("/status-student")
+    public ResponseEntity<List<BorrowEntity>> getAllBorrowsByStudentAndStatus(@RequestParam String email, @RequestParam BorrowEntity.BorrowStatus borrowstatus)
     {
         List<BorrowEntity> borrows = new ArrayList<>();
-        Optional<StudentEntity> student = studentService.getStudentById(studentid);
+        Optional<StudentEntity> student = studentService.getStudentByEmail(email);
         ResponseEntity response = ResponseEntity.status(401).body("Student does not exist");
 
         if(student.isPresent())
