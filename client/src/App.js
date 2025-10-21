@@ -12,6 +12,7 @@ import BrowseLaptops from './pages/BrowseLaptops.jsx';
 import Schedules from './pages/Schedules.jsx';
 import StaffDashboard from './pages/StaffDashboard.jsx';
 import AddLaptop from './pages/AddLaptop.jsx';
+import StaffBrowseLaptops from './pages/StaffBrowseLaptops.jsx';
 
 export default function App()
 {
@@ -31,6 +32,7 @@ export default function App()
           <Route path="schedules" element={<Schedules/>}/>
           <Route path="staffdashboard" element={<StaffDashboard/>}/>
           <Route path="addlaptop" element={<AddLaptop/>}/>
+          <Route path="staffbrowselaptops" element={<StaffBrowseLaptops/>}/>
         </Routes>
       </BrowserRouter>
     </>

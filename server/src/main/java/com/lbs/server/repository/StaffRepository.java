@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface StaffRepository extends JpaRepository<StaffEntity, Long>
-{
-    Optional<StaffEntity> findByEmailAndPassword(String email, String password);
+public interface StaffRepository extends JpaRepository<StaffEntity, Long> {
+    Optional<StaffEntity> findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }

@@ -11,60 +11,56 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class LaptopService
-{
+public class LaptopService {
     @Autowired
     private LaptopRepository laptopRepository;
 
     // Add new laptop
-    public LaptopEntity addLaptop(LaptopEntity laptop)
-    {
+    public LaptopEntity addLaptop(LaptopEntity laptop) {
         return laptopRepository.save(laptop);
     }
 
     // Get all laptops
-    public List<LaptopEntity> getAllLaptops()
-    {
+    public List<LaptopEntity> getAllLaptops() {
         return laptopRepository.findAll();
     }
 
     // Get all laptops based on status
-    public List<LaptopEntity> getAllLaptopsByStatus(LaptopEntity.LaptopStatus laptopstatus)
-    {
+    public List<LaptopEntity> getAllLaptopsByStatus(LaptopEntity.LaptopStatus laptopstatus) {
         return laptopRepository.findByLaptopstatus(laptopstatus);
     }
 
     // Get all laptops based on brand
-    public List<LaptopEntity> getAllLaptopsByBrand(String brand)
-    {
+    public List<LaptopEntity> getAllLaptopsByBrand(String brand) {
         return laptopRepository.findByBrand(brand);
     }
 
     // Get specific laptop based on brand and model
-    public Optional<LaptopEntity> getLaptopByBrandAndModel(String brand, String model)
-    {
+    public Optional<LaptopEntity> getLaptopByBrandAndModel(String brand, String model) {
         return laptopRepository.findByBrandAndModel(brand, model);
     }
 
     // Update laptops status
-    public LaptopEntity updateLaptopStatus(LaptopEntity.LaptopStatus newStatus, LaptopEntity updatedLaptop)
-    {
+    public LaptopEntity updateLaptopStatus(LaptopEntity.LaptopStatus newStatus, LaptopEntity updatedLaptop) {
         LaptopEntity temp = new LaptopEntity();
-        
-        try
-        {
+
+        try {
             String brand = updatedLaptop.getBrand();
             String model = updatedLaptop.getModel();
             temp = laptopRepository.findByBrandAndModel(brand, model).get();
             temp.setLaptopstatus(newStatus);
-        }
-        catch(NoSuchElementException e)
-        {
+        } catch (NoSuchElementException e) {
             throw new NameNotFoundException("Laptop does not exist!");
-        }
-        finally
-        {
+        } finally {
             return laptopRepository.save(temp);
         }
+    }
+
+    public LaptopEntity returnLaptop(Long id) {
+        LaptopEntity laptop = laptopRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Laptop not found with ID: " + id));
+
+        laptop.setLaptopstatus(LaptopEntity.LaptopStatus.AVAILABLE);
+        return laptopRepository.save(laptop);
     }
 }

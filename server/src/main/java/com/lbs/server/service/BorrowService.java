@@ -15,8 +15,7 @@ import java.util.Optional;
 import java.util.NoSuchElementException;
 
 @Service
-public class BorrowService
-{
+public class BorrowService {
     @Autowired
     private BorrowRepository borrowRepository;
 
@@ -30,17 +29,16 @@ public class BorrowService
     private ScheduleRepository scheduleRepository;
 
     // Add new borrow record
-    public BorrowEntity addBorrowRecord(Long studentid, Long laptopid, Long scheduleid, BorrowEntity borrow)
-    {
+    public BorrowEntity addBorrowRecord(Long studentid, Long laptopid, Long scheduleid, BorrowEntity borrow) {
         borrow.setStudent(studentRepository.findById(studentid).get());
         borrow.setLaptop(laptopRepository.findById(laptopid).get());
         borrow.setSchedule(scheduleRepository.findById(scheduleid).get());
         return borrowRepository.save(borrow);
     }
 
-    // Add new borrow record using student email, schedule course, laptop brand, and model
-    public BorrowEntity addBorrowRecord2(String email, String course, String brand, String model, BorrowEntity borrow)
-    {
+    // Add new borrow record using student email, schedule course, laptop brand, and
+    // model
+    public BorrowEntity addBorrowRecord2(String email, String course, String brand, String model, BorrowEntity borrow) {
         Optional<StudentEntity> student = studentRepository.findByEmail(email);
         borrow.setStudent(student.get());
         borrow.setSchedule(scheduleRepository.findByCourseAndStudent(course, student.get()).get());
@@ -49,37 +47,30 @@ public class BorrowService
     }
 
     // Get all borrow records based on a specific borrow status
-    public List<BorrowEntity> getAllBorrowsByStatus(BorrowEntity.BorrowStatus borrowstatus)
-    {
+    public List<BorrowEntity> getAllBorrowsByStatus(BorrowEntity.BorrowStatus borrowstatus) {
         return borrowRepository.findByBorrowstatus(borrowstatus);
     }
 
     // Get all borrow records from a specific student with a specific borrow status
-    public List<BorrowEntity> getAllBorrowsByStudentAndStatus(StudentEntity student, BorrowEntity.BorrowStatus borrowstatus)
-    {
-        return  borrowRepository.findByStudentAndBorrowstatus(student, borrowstatus);
+    public List<BorrowEntity> getAllBorrowsByStudentAndStatus(StudentEntity student,
+            BorrowEntity.BorrowStatus borrowstatus) {
+        return borrowRepository.findByStudentAndBorrowstatus(student, borrowstatus);
     }
 
     // Update borrow status
-    public BorrowEntity updateBorrowStatus(BorrowEntity.BorrowStatus newStatus, BorrowEntity updatedBorrow)
-    {
+    public BorrowEntity updateBorrowStatus(BorrowEntity.BorrowStatus newStatus, BorrowEntity updatedBorrow) {
         BorrowEntity temp = new BorrowEntity();
 
-        try
-        {
+        try {
             StudentEntity student = studentRepository.findByEmail(updatedBorrow.getStudent().getEmail()).get();
             String brand = updatedBorrow.getLaptop().getBrand();
             String model = updatedBorrow.getLaptop().getModel();
             LaptopEntity laptop = laptopRepository.findByBrandAndModel(brand, model).get();
             temp = borrowRepository.findByStudentAndLaptop(student, laptop).get();
             temp.setBorrowstatus(newStatus);
-        }
-        catch(NoSuchElementException e)
-        {
+        } catch (NoSuchElementException e) {
             throw new NameNotFoundException("Borrow record does not exist!");
-        }
-        finally
-        {
+        } finally {
             return borrowRepository.save(temp);
         }
     }

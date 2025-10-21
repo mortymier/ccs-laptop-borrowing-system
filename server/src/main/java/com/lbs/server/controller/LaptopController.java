@@ -49,4 +49,18 @@ public class LaptopController
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    
+    @PutMapping("/return/{id}")
+public ResponseEntity<LaptopEntity> returnLaptop(@PathVariable Long id)
+{
+    try
+    {
+        LaptopEntity returnedLaptop = laptopService.returnLaptop(id);
+        return ResponseEntity.ok(returnedLaptop);
+    }
+    catch(Exception e)
+    {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+}
 }
