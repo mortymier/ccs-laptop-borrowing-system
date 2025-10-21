@@ -8,6 +8,10 @@ import Register from './pages/Register.jsx';
 import RegisterStudent from './pages/RegisterStudent.jsx';
 import RegisterStaff from './pages/RegisterStaff.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
+import BrowseLaptops from './pages/BrowseLaptops.jsx';
+import Schedules from './pages/Schedules.jsx';
+import StaffDashboard from './pages/StaffDashboard.jsx';
+import AddLaptop from './pages/AddLaptop.jsx';
 
 export default function App()
 {
@@ -23,6 +27,10 @@ export default function App()
           <Route path="registerstudent" element={<RegisterStudent/>}/>
           <Route path="registerstaff" element={<RegisterStaff/>}/>
           <Route path="studentdashboard" element={<StudentDashboard/>}/>
+          <Route path="browselaptops" element={<BrowseLaptops/>}/>
+          <Route path="schedules" element={<Schedules/>}/>
+          <Route path="staffdashboard" element={<StaffDashboard/>}/>
+          <Route path="addlaptop" element={<AddLaptop/>}/>
         </Routes>
       </BrowserRouter>
     </>
