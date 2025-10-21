@@ -24,21 +24,21 @@ public class ScheduleController
     @Autowired
     private StudentService studentService;
 
-    // POST : Add new schedule
-    @PostMapping("/student/{id}")
-    public ResponseEntity<ScheduleEntity> addSchedule(@PathVariable Long id, @RequestBody ScheduleEntity schedule)
+    // POST : Add new schedule for a specific student using email
+    @PostMapping("/student")
+    public ResponseEntity<ScheduleEntity> addSchedule(@RequestParam String email, @RequestBody ScheduleEntity schedule)
     {
-        ScheduleEntity newSchedule = scheduleService.addSchedule(id, schedule);
+        ScheduleEntity newSchedule = scheduleService.addScheduleByEmail(email, schedule);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().toUri();
         return ResponseEntity.created(location).body(newSchedule);
     }
 
-    // GET : All schedules of a specific student
-    @GetMapping("/student/{id}")
-    public ResponseEntity<List<ScheduleEntity>> getAllSchedulesByStudents(@PathVariable Long id)
+    // GET : All schedules of a specific student by email
+    @GetMapping("/student")
+    public ResponseEntity<List<ScheduleEntity>> getAllSchedulesByStudents(@RequestParam String email)
     {
         List<ScheduleEntity> schedules = new ArrayList<>();
-        Optional<StudentEntity> student = studentService.getStudentById(id);
+        Optional<StudentEntity> student = studentService.getStudentByEmail(email);
         ResponseEntity response = ResponseEntity.status(401).body("Student does not exist");
 
         if(student.isPresent())
