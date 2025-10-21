@@ -29,4 +29,10 @@ public class StudentService
     {
         return studentRepository.findById(id);
     }
+
+    // Get student by email
+    public Optional<StudentEntity> getStudentByEmail(String email)
+    {
+        return studentRepository.findByEmail(email);
+    }
 }
